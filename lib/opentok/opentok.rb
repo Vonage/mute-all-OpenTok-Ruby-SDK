@@ -8,6 +8,7 @@ require "opentok/sip"
 require "opentok/streams"
 require "opentok/signals"
 require "opentok/broadcasts"
+require "opentok/force_mute"
 
 require "resolv"
 require "set"
@@ -43,7 +44,7 @@ module OpenTok
   #
   #     * <code>:moderator</code> -- In addition to the privileges granted to a
   #       publisher, in clients using the OpenTok.js library, a moderator can call the
-  #       <code>forceUnpublish()</code> and <code>forceDisconnect()</code> method of the
+  #       <code>forceMute</code>,<code>forceMuteAll</code>,<code>forceUnpublish()</code> and <code>forceDisconnect()</code> method of the
   #       Session object.
   #   @option options [integer] :expire_time The expiration time, in seconds since the UNIX epoch.
   #     Pass in 0 to use the default expiration time of 24 hours after the token creation time.
@@ -210,6 +211,11 @@ module OpenTok
     # A Connections object, which lets disconnect clients from an OpenTok session.
     def connections
       @connections ||= Connections.new client
+    end
+
+    # A force mute object, which lets mute clients from an OpenTok session.
+    def force_mute
+      @force_mute ||= ForceMute.new client
     end
 
     protected

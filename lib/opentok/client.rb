@@ -206,6 +206,43 @@ module OpenTok
       raise OpenTokError, "Failed to connect to OpenTok. Response code: #{e.message}"
     end
 
+    def forceMute(session_id, stream_id)
+      response = self.class.post("/v2/project/#{@api_key}/session/#{session_id}/stream_id/#{stream_id}/mute", {
+          :headers => generate_headers("Content-Type" => "application/json")
+      })
+      case response.code
+      when 204
+        response
+      when 400
+        raise ArgumentError, "Force mute failed. Connection ID #{stream_id} or Session ID #{session_id} is invalid"
+      when 403
+        raise OpenTokAuthenticationError, "You are not authorized to forceMute, check your authentication credentials or token type is non-moderator"
+      when 404
+        raise OpenTokMuteError, "Foce Mute could not be executed"
+      end
+    rescue StandardError => e
+      raise OpenTokError, "Failed to connect to OpenTok. Response code: #{e.message}"
+    end
+
+    def forceMuteAll(session_id, excluded_steam_ids)
+      response = self.class.post("/v2/project/#{@api_key}/session/#{session_id}/mute", {
+          :body => excluded_steam_ids.to_json,
+          :headers => generate_headers("Content-Type" => "application/json")
+      })
+      case response.code
+      when 204
+        response
+      when 400
+        raise ArgumentError, "Force mute all failed. Session ID #{session_id} is invalid"
+      when 403
+        raise OpenTokAuthenticationError, "You are not authorized to forceMuteAll, check your authentication credentials or token type is non-moderator"
+      when 404
+        raise OpenTokMuteError, "Force Mute All could not be executed"
+      end
+    rescue StandardError => e
+      raise OpenTokError, "Failed to connect to OpenTok. Response code: #{e.message}"
+    end
+
     def signal(session_id, connection_id, opts)
       opts.extend(HashExtensions)
       connectionPath = connection_id.to_s.empty? ? "" : "/connection/#{connection_id}"

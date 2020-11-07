@@ -10,6 +10,8 @@ module OpenTok
   class OpenTokAuthenticationError < OpenTokError; end
   # Defines errors raised when you attempt a force disconnect a client and it is not connected to the session.
   class OpenTokConnectionError < OpenTokError; end
+  # Defines errors raised when force mute can't be completed.
+  class OpenTokMuteError < OpenTokError; end
   # Defines errors raised when you attempt set layout classes to a stream.
   class OpenTokStreamLayoutError < OpenTokError; end
   # Defines errors raised when you perform Broadcast operations.
