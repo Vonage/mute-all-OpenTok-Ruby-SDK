@@ -207,7 +207,7 @@ module OpenTok
     end
 
     def forceMute(session_id, stream_id)
-      response = self.class.post("/v2/project/#{@api_key}/session/#{session_id}/stream_id/#{stream_id}/mute", {
+      response = self.class.post("/v2/project/#{@api_key}/session/#{session_id}/stream/#{stream_id}/mute", {
           :headers => generate_headers("Content-Type" => "application/json")
       })
       case response.code
