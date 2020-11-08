@@ -38,22 +38,18 @@ describe OpenTok::ForceMute do
     }.to raise_error(ArgumentError)
   end
 
-#
-# need to be added and rechecked after end point will be added to Anvil, convention in project is to run request throw the server.
-#
+  it "forces a mute stream Id", :vcr => { :erb => { :version => OpenTok::VERSION + "-Ruby-Version-#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}"} } do
+    response = force_mute.forceMute(session_id, stream_id)
+    expect(response).not_to be_nil
+  end
 
-#   it "forces a mute stream Id", :vcr => { :erb => { :version => OpenTok::VERSION + "-Ruby-Version-#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}"} } do
-#     response = force_mute.forceMute(session_id, stream_id)
-#     expect(response).not_to be_nil
-#   end
+  it "forces a mute all but excluded streams", :vcr => { :erb => { :version => OpenTok::VERSION + "-Ruby-Version-#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}"} } do
+    response = force_mute.forceMuteAll(session_id, excluded_steam_ids)
+    expect(response).not_to be_nil
+  end
 
-#   it "forces a mute all but excluded streams", :vcr => { :erb => { :version => OpenTok::VERSION + "-Ruby-Version-#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}"} } do
-#     response = force_mute.forceMuteAll(session_id, excluded_steam_ids)
-#     expect(response).not_to be_nil
-#   end
-
-#   it "forces a mute all", :vcr => { :erb => { :version => OpenTok::VERSION + "-Ruby-Version-#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}"} } do
-#     response = force_mute.forceMuteAll(session_id, nil)
-#     expect(response).not_to be_nil
-#   end
+  it "forces a mute all", :vcr => { :erb => { :version => OpenTok::VERSION + "-Ruby-Version-#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}"} } do
+    response = force_mute.forceMuteAll(session_id, nil)
+    expect(response).not_to be_nil
+  end
 end
