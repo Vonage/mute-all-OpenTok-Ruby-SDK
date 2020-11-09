@@ -20,7 +20,7 @@ http_interactions:
   response:
     status:
       code: 204
-      message: Not Found
+      message: Ok
     headers:
       Server:
       - nginx
