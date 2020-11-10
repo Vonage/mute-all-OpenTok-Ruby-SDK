@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.opentok.com/v2/project/123456/session/SESSIONID/mute
     body:
       encoding: UTF-8
-      string: '"{\"1\":1, \"2\":2}"'
+      string: '{"excluded":["1","2"]}'
     headers:
       User-Agent:
       - OpenTok-Ruby-SDK/4.1.2-Ruby-Version-2.6.3-p62
@@ -25,7 +25,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Sat, 07 Nov 2020 22:11:58 GMT
+      - Tue, 10 Nov 2020 21:09:07 GMT
       Content-Length:
       - '0'
       Connection:

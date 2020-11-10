@@ -224,9 +224,13 @@ module OpenTok
       raise OpenTokError, "Failed to connect to OpenTok. Response code: #{e.message}"
     end
 
-    def forceMuteAll(session_id, excluded_steam_ids)
+    def forceMuteAll(session_id, excluded_stream_ids=nil)
+      reqBody = "";
+      if excluded_stream_ids != nil
+        reqBody = {"excluded" => excluded_stream_ids}.to_json
+      end
       response = self.class.post("/v2/project/#{@api_key}/session/#{session_id}/mute", {
-          :body => excluded_steam_ids.to_json,
+          :body => reqBody,
           :headers => generate_headers("Content-Type" => "application/json")
       })
       case response.code

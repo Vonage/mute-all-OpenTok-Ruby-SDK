@@ -35,7 +35,7 @@ module OpenTok
       # @raise [OpenTokAuthenticationError] You are not authorized to mute the connection. Check your authentication credentials.
       # @raise [OpenTokMuteError] Can't execute mute function.
       #
-      def forceMuteAll(session_id, excluded_steam_ids)
+      def forceMuteAll(session_id, excluded_steam_ids=nil)
         raise ArgumentError, "session_id not provided" if session_id.to_s.empty?
         response = @client.forceMuteAll(session_id, excluded_steam_ids)
         (200..300).include? response.code

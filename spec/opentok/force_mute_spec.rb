@@ -13,7 +13,7 @@ describe OpenTok::ForceMute do
   let(:api_secret) { "1234567890abcdef1234567890abcdef1234567890" }
   let(:session_id) { "SESSIONID" }
   let(:stream_id) { "STREAMID" }
-  let(:excluded_steam_ids) { '{"1":1, "2":2}' }
+  let(:excluded_steam_ids) { ["1","2"] }
   let(:opentok) { OpenTok::OpenTok.new api_key, api_secret }
   let(:force_mute) { opentok.force_mute }
 

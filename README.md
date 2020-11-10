@@ -454,6 +454,21 @@ You can also change the layout of an individual stream dynamically. Refer to
 You can cause a client to be forced to disconnect from a session by using the
 `opentok.connections.forceDisconnect(session_id, connection_id)` method.
 
+## Force Mute
+
+You can cause a stream to be forced to Mute in a session by using the
+`opentok.force_mute.forceMute(session_id, stream_id)` method.
+
+## Force Mute All
+
+You can cause all streams to be forced to Mute in a session by using the
+`opentok.force_mute.forceMute(session_id)` method.
+
+## Force Mute All (excludedStreamIds)
+
+You can cause all streams but a list of excluded streams to be forced to Mute in a session by using the
+`opentok.force_mute.forceMute(session_id, excluded_stream_ids)` method.
+
 ## Initiating a SIP call
 
 You can initiate a SIP call using the `opentok.sip.dial(session_id, token, sip_uri, opts)` method.
