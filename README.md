@@ -467,6 +467,7 @@ You can cause all streams to be forced to Mute in a session by using the
 ## Force Mute All (excludedStreamIds)
 
 You can cause all streams but a list of excluded streams to be forced to Mute in a session by using the
+`excluded_stream_ids = ["stream1","stream2"]`
 `opentok.force_mute.forceMute(session_id, excluded_stream_ids)` method.
 
 ## Initiating a SIP call
